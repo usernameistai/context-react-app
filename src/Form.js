@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import withStyles from '@material-ui/core/styles/withStyles';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
-import CssBaseline from '@material-ui/core/CssBaseline';
+// import CssBaseline from '@material-ui/core/CssBaseline';
 import FormControl from '@material-ui/core/FormControl';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
@@ -46,7 +46,8 @@ class Form extends Component {
             <Button 
               variant="contained"
               type="submit"
-              fullWidth color="primary" 
+              fullWidth 
+              color="primary" 
               className={classes.submit}
             >Sign In</Button>
           </form>

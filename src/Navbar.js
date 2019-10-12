@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { withStyles } from '@material-ui/core/styles';
+import { ThemeContext } from './contexts/ThemeContext';
 import styles from './styles/NavBarStyles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -10,11 +11,15 @@ import SearchIcon from '@material-ui/icons/Search';
 import Switch from '@material-ui/core/Switch';
 
 class Navbar extends Component {
+  static contextType = ThemeContext; /** It says look up and see if you are nested inside of a theme
+  context provider, if you are inside more thanone find the nearest one */
   render() {
+    // console.log(this.context);
+    const { isDarkMode } = this.context;
     const { classes } = this.props;
     return (
       <div className={classes.root}>
-        <AppBar position="static" color="primary">
+        <AppBar position="static" color={isDarkMode ? "default" : "primary"}>
           <Toolbar>
             <IconButton className={classes.menuButton}>
               <span>FR</span>

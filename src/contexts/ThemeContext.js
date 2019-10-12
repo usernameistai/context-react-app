@@ -10,7 +10,7 @@ export class ThemeProvider extends Component {
   render() {
     return (
       <ThemeContext.Provider value={{ ...this.state, tasteLikeChicken: true }}>
-        {this.props.children}
+        {this.props.children} {/**what's inside of it should be able to consume value={{}} */}
       </ThemeContext.Provider>
     )
   }

@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
-
-class PageContent extends Component {
+import { ThemeContext } from './contexts/ThemeContext';
+// this is basically a wrapper component
+export default class PageContent extends Component {
+  static contextType= ThemeContext;
   render() {
+    const { isDarkMode } = this.context;
     const styles={
-      backgroundColor: "white",
+      backgroundColor: isDarkMode ? "darkslategrey" : "#f5f5f5",
       height: "100vh",
       width: "100vw"
     };
@@ -14,5 +17,3 @@ class PageContent extends Component {
     );
   }
 }
-
-export default PageContent;
