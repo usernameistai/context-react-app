@@ -6,12 +6,16 @@ export class ThemeProvider extends Component {
   constructor(props) {
     super(props);
     this.state = { isDarkMode: true };
+    this.toggleTheme = this.toggleTheme.bind(this);
   };
+  toggleTheme() {
+    this.setState({ isDarkMode: !this.state.isDarkMode })
+  }
   render() {
     return (
-      <ThemeContext.Provider value={{ ...this.state, tasteLikeChicken: true }}>
+      <ThemeContext.Provider value={{ ...this.state, toggleTheme: this.toggleTheme }}>
         {this.props.children} {/**what's inside of it should be able to consume value={{}} */}
       </ThemeContext.Provider>
-    )
+    );
   }
 }
