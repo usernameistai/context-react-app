@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import { ThemeContext } from './contexts/ThemeContext';
+// import { languageContext } from './contexts/LanguageContext';
+import { withLanguageContext } from './contexts/LanguageContext';
 import styles from './styles/NavBarStyles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -10,21 +12,44 @@ import InputBase from '@material-ui/core/InputBase';
 import SearchIcon from '@material-ui/icons/Search';
 import Switch from '@material-ui/core/Switch';
 
+const content = {
+  english: {
+    search: "Search",
+    flag: "🇬🇧"
+  },
+  french: {
+    search: "Chercher",
+    flag: "🇫🇷"
+  },
+  spanish: {
+    search: "Buscar",
+    flag: "🇪🇸"
+  }
+};
+
 class Navbar extends Component {
   static contextType = ThemeContext; /** It says look up and see if you are nested inside of a theme
-  context provider, if you are inside more thanone find the nearest one */
+  context provider, if you are inside more than one find the nearest one */
   render() {
-    // console.log(this.context);
-    const { isDarkMode, toggleTheme } = this.context;
+    const { isDarkMode, toggleTheme } = this.context; // console.log(this.context);
     const { classes } = this.props;
+    const { language } = this.props.languageContext; // passed dowen through HOC
+    const { search, flag } = content[language];
     return (
       <div className={classes.root}>
-        <AppBar position="static" color={isDarkMode ? "default" : "primary"}>
+        <AppBar 
+          position="static" 
+          color={isDarkMode ? "default" : "primary"}
+        >
           <Toolbar>
-            <IconButton className={classes.menuButton}>
-              <span>FR</span>
+            <IconButton className={classes.menuButton} color="inherit">
+              <span>{flag}</span>
             </IconButton>
-            <Typography className={classes.title} variant="h6" color="inherit">
+            <Typography 
+              className={classes.title} 
+              variant="h6" 
+              color="inherit"
+            >
               App title
             </Typography>
             <Switch onChange={toggleTheme} /> {/**Adds toggle button in this case to go from dark to light */}
@@ -34,7 +59,8 @@ class Navbar extends Component {
                 <SearchIcon />
               </div>
               <InputBase  // look it up
-                placeholder="Search..." classes={{
+                placeholder={`${search}...`} 
+                classes={{
                   root: classes.inputRoot,
                   input: classes.inputInput
                 }}
@@ -47,4 +73,4 @@ class Navbar extends Component {
   }
 }
 
-export default withStyles(styles)(Navbar);
+export default withLanguageContext(withStyles(styles)(Navbar));
