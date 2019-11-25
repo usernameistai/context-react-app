@@ -13,7 +13,7 @@ const styles = theme => ({ // these are scoped to the component
     marginRight: 20
   },
   title: {
-    display: "non2",
+    display: "none",
     [theme.breakpoints.up("sm")]: {
       display: "block"
     }
